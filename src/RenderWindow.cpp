@@ -5,6 +5,7 @@
 #include "RenderWindow.h"
 #include "SDL.h"
 #include "SDL_image.h"
+#include "MyCharacter.h"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 	:window(NULL), renderer(NULL)
@@ -49,6 +50,24 @@ void RenderWindow::render(Entity& p_entity)
 
 	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
 }
+
+void RenderWindow::render(MyCharacter& p_MC)
+{
+	SDL_Rect src;
+	src.x = p_MC.getCurrentFrame().x;
+	src.y = p_MC.getCurrentFrame().y;
+	src.w = p_MC.getCurrentFrame().w;
+	src.h = p_MC.getCurrentFrame().h;
+
+	SDL_Rect dst;
+	dst.x = p_MC.getXpos();
+	dst.y = p_MC.getYpos() ;
+	dst.w = p_MC.getCurrentFrame().w * 2;
+	dst.h = p_MC.getCurrentFrame().h * 2;
+
+	SDL_RenderCopy(renderer, p_MC.getTex(), &src, &dst);
+}
+
 
 void RenderWindow::render(SDL_Texture* texture, SDL_Rect src, SDL_Rect dst)  // Ensure this is defined
 {

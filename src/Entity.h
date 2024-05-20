@@ -16,4 +16,4 @@ private:
 	SDL_Rect currentFrame;
 	SDL_Texture* tex;
 };
-#endif // ENTITY_H
+#endif ENTITY_H

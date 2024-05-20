@@ -5,6 +5,7 @@
 #include "RenderWindow.h"
 #include "Entity.h"
 #include "Map.h"
+#include "MyCharacter.h"
 
 int main(int argc, char** argv)
 {
@@ -27,6 +28,7 @@ int main(int argc, char** argv)
     // Load the texture for the entities
     SDL_Texture* Batu = window.loadTexture("img_obj/1.png");
     SDL_Texture* crates = window.loadTexture("img_obj/crate.png");
+    SDL_Texture* MC = window.loadTexture("img_obj/elf_f_idle_anim_f0.png");
     // Create an array of entities
     Entity entities[4] =      {Entity(-32, 100, Batu),
                               Entity(636, 100, Batu),
@@ -41,7 +43,7 @@ int main(int argc, char** argv)
         Entity(200,400,crates)
     };
 
-
+    MyCharacter Mine(350,570,MC);
     bool gameRunning = true;
     SDL_Event event;
 
@@ -65,6 +67,8 @@ int main(int argc, char** argv)
         {
             window.render(Crates[i]);
         }
+
+        window.render(Mine);
         window.display();
     }
 

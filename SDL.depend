@@ -37,3 +37,56 @@
 	"SDL.h"
 	"SDL_image.h"
 
+1716182284 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	"RenderWindow.h"
+	"Entity.h"
+	"Map.h"
+	"MyCharacter.h"
+
+1716181606 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\renderwindow.h
+	<SDL.h>
+	<SDL_image.h>
+	"Entity.h"
+
+1716182007 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.h
+	"SDL.h"
+	"SDL_image.h"
+
+1716161134 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\map.h
+	"RenderWindow.h"
+	"SDL.h"
+	"SDL_image.h"
+
+1716166790 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.cpp
+	"Entity.h"
+
+1716161446 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\map.cpp
+	"Map.h"
+	"Map.h"
+	"RenderWindow.h"
+
+1716182031 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\renderwindow.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	"RenderWindow.h"
+	"SDL.h"
+	"SDL_image.h"
+	"MyCharacter.h"
+
+1716171413 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\colission.cpp
+	"Colission.h"
+
+1716171413 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\colission.h
+	"SDL.h"
+
+1716181606 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.h
+	"SDL.h"
+	"SDL_image.h"
+
+1716181698 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.cpp
+	"MyCharacter.h"
+
