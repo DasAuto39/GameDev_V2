@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1716166945 source:c:\users\akhmad\desktop\modul proglan\sdl\src\renderwindow.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	"RenderWindow.h"
+	"SDL.h"
+	"SDL_image.h"
+
+1716160946 c:\users\akhmad\desktop\modul proglan\sdl\src\renderwindow.h
+	<SDL.h>
+	<SDL_image.h>
+	"Entity.h"
+
+1716167121 source:c:\users\akhmad\desktop\modul proglan\sdl\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	"RenderWindow.h"
+	"Entity.h"
+	"Map.h"
+
+1716158467 c:\users\akhmad\desktop\modul proglan\sdl\src\entity.h
+	"SDL.h"
+	"SDL_image.h"
+
+1716166790 source:c:\users\akhmad\desktop\modul proglan\sdl\src\entity.cpp
+	"Entity.h"
+
+1716161446 source:c:\users\akhmad\desktop\modul proglan\sdl\src\map.cpp
+	"Map.h"
+	"Map.h"
+	"RenderWindow.h"
+
+1716161134 c:\users\akhmad\desktop\modul proglan\sdl\src\map.h
+	"RenderWindow.h"
+	"SDL.h"
+	"SDL_image.h"
+
