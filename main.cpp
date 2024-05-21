@@ -46,11 +46,15 @@ int main(int argc, char** argv)
         Entity(636, 400, Batu)
     };
 
-    Entity Crates[4] = {
+    Entity Crates[8] = {
         Entity(250, 54, crates),
         Entity(344, 200, crates),
         Entity(255, 520, crates),
-        Entity(200, 400, crates)
+        Entity(200, 400, crates),
+        Entity(400, 400, crates),
+        Entity(450, 300, crates),
+        Entity(500, 200, crates),
+        Entity(500, 100, crates),
     };
 
     MyCharacter Mine(350, 500, MC);
@@ -75,7 +79,7 @@ int main(int argc, char** argv)
 
         }
 
-        Mine.update(Crates, 4);
+        Mine.update(Crates, 10);
         window.clear();
         gameMap.cldrawmap();
 
@@ -84,7 +88,7 @@ int main(int argc, char** argv)
         {
             window.render(entities[i]);
         }
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 10; i++)
         {
             window.render(Crates[i]);
         }
