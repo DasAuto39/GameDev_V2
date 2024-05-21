@@ -47,33 +47,12 @@ void RenderWindow::render(Entity& p_entity)
 	dst.y = p_entity.getY() ;
 	dst.w = p_entity.getCurrentFrame().w * 2;
 	dst.h = p_entity.getCurrentFrame().h * 2;
-
-
-
-
-
-
-
-
-
 	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
 }
 
 void RenderWindow::render(MyCharacter& p_MC)
 {
-	SDL_Rect src;
-	src.x = p_MC.getCurrentFrame().x;
-	src.y = p_MC.getCurrentFrame().y;
-	src.w = p_MC.getCurrentFrame().w;
-	src.h = p_MC.getCurrentFrame().h;
-
-	SDL_Rect dst;
-	dst.x = p_MC.getXpos();
-	dst.y = p_MC.getYpos() ;
-	dst.w = p_MC.getCurrentFrame().w * 2;
-	dst.h = p_MC.getCurrentFrame().h * 2;
-
-	SDL_RenderCopy(renderer, p_MC.getTex(), &src, &dst);
+	SDL_RenderCopy(renderer, p_MC.getTex(), p_MC.rtunSRCMC(), p_MC.rtunDSTMC());
 }
 
 
