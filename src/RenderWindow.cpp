@@ -48,6 +48,14 @@ void RenderWindow::render(Entity& p_entity)
 	dst.w = p_entity.getCurrentFrame().w * 2;
 	dst.h = p_entity.getCurrentFrame().h * 2;
 
+
+
+
+
+
+
+
+
 	SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
 }
 
