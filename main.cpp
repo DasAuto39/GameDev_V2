@@ -47,8 +47,8 @@ int main(int argc, char** argv)
     };
 
     Entity Crates[4] = {
-        Entity(50, 54, crates),
-        Entity(344, 30, crates),
+        Entity(250, 54, crates),
+        Entity(344, 200, crates),
         Entity(255, 520, crates),
         Entity(200, 400, crates)
     };
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 
         }
 
-        Mine.update();
+        Mine.update(Crates, 4);
         window.clear();
         gameMap.cldrawmap();
 

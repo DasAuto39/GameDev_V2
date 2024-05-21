@@ -2,7 +2,7 @@
 
 
 Entity::Entity(float p_x, float p_y, SDL_Texture* p_tex)
-:x(p_x), y(p_y), tex(p_tex)
+:xE(p_x), yE(p_y), tex(p_tex)
 {
 	currentFrame.x = 0;
 	currentFrame.y = 0;
@@ -10,19 +10,45 @@ Entity::Entity(float p_x, float p_y, SDL_Texture* p_tex)
 	currentFrame.h = 32;
 }
 
-float Entity::getX()
+float Entity::getXE()
 {
-	return x;
+	return xE;
 }
-float Entity::getY()
+float Entity::getYE()
 {
-	return y;
+	return yE;
 }
 
 SDL_Texture* Entity::getTex()
 {
 	return tex;
 }
+
+SDL_Rect* Entity::rtunSRCE()
+{
+    srcE.x = currentFrame.x;
+	srcE.y = currentFrame.y;
+	srcE.w = currentFrame.w;
+	srcE.h = currentFrame.h;
+
+    return &srcE;
+}
+
+SDL_Rect* Entity::rtunDSTE()
+{
+    dstE.x = xE;
+	dstE.y = yE ;
+	dstE.w = currentFrame.w * 2;
+	dstE.h = currentFrame.h * 2;
+
+	return &dstE;
+}
+
+SDL_Rect Entity::GetNotDSTptr()
+{
+    return dstE;
+}
+
 
 SDL_Rect Entity::getCurrentFrame()
 {

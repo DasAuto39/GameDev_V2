@@ -1,23 +1,17 @@
 #include "MyCharacter.h"
+#include "Collision.h"
+#include "Entity.h"
 #include "iostream"
 
+
+
 MyCharacter::MyCharacter(float p_x, float p_y, SDL_Texture* p_tex)
-    : xpos(p_x), ypos(p_y), tex(p_tex), xspeed(0), yspeed(0), life(3)
+    : xposMC(p_x), yposMC(p_y), tex(p_tex), xspeedMC(0), yspeedMC(0), lifeMC(3)
 {
     currentFrame.x = 0;
     currentFrame.y = 0;
     currentFrame.w = 32;
     currentFrame.h = 32;
-}
-
-float MyCharacter::getXpos()
-{
-    return xpos;
-}
-
-float MyCharacter::getYpos()
-{
-    return ypos;
 }
 
 void MyCharacter::handleEvent(SDL_Event& event)
@@ -27,16 +21,16 @@ void MyCharacter::handleEvent(SDL_Event& event)
         switch (event.key.keysym.sym)
         {
         case SDLK_UP:
-            yspeed = -1;
+            yspeedMC = -1;
             break;
         case SDLK_DOWN:
-            yspeed = 1;
+            yspeedMC = 1;
             break;
         case SDLK_LEFT:
-            xspeed = -1;
+            xspeedMC = -1;
             break;
         case SDLK_RIGHT:
-            xspeed = 1;
+            xspeedMC = 1;
             break;
         }
     }
@@ -46,47 +40,67 @@ void MyCharacter::handleEvent(SDL_Event& event)
         {
         case SDLK_UP:
         case SDLK_DOWN:
-            yspeed = 0;
+            yspeedMC = 0;
             break;
         case SDLK_LEFT:
         case SDLK_RIGHT:
-            xspeed = 0;
+            xspeedMC = 0;
             break;
         }
     }
 }
 
-void MyCharacter::update()
+void MyCharacter::update(Entity crates[], int numCrates)
 {
-    xpos += xspeed;
-    ypos += yspeed;
+    xposMC += xspeedMC;
+    yposMC += yspeedMC;
 
-    if (xpos < 0)
+    if (xposMC < 0)
         {
-            xspeed = 0;
-            xpos = 0;
+            xspeedMC = 0;
+            xposMC = 0;
         }
-    if (xpos > 670)
+    if (xposMC > 670)
         {
-            xspeed = 0;
-            xpos = 670;
+            xspeedMC = 0;
+            xposMC = 670;
         }
-    if (ypos < -30)
+    if (yposMC < -30)
         {
-            yspeed = 0;
-            ypos = -30;
+            yspeedMC = 0;
+            yposMC = -30;
         }
-    if (ypos > 576)
+    if (yposMC > 576)
         {
-            yspeed = 0;
-            ypos = 576;
+            yspeedMC = 0;
+            yposMC = 576;
         }
+    checkCollision(crates, numCrates);
+}
+
+void MyCharacter::checkCollision(Entity crates[], int numCrates)
+{
+    SDL_Rect MC = {static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2};
+
+    for (int i = 0; i < numCrates; i++)
+    {
+        if (Collision::checkCollision(MC, crates[i].GetNotDSTptr()))
+        {
+            // Revert movement if collision detected
+            xposMC -= xspeedMC;
+            yposMC -= yspeedMC;
+
+            xspeedMC = 0;
+            yspeedMC = 0;
+            break;
+        }
+    }
 }
 
 SDL_Rect* MyCharacter::rtunDSTMC()
 {
-    dstMC.x = xpos;
-    dstMC.y = ypos;
+    dstMC.x = xposMC;
+    dstMC.y = yposMC;
     dstMC.w = currentFrame.w * 2;
     dstMC.h = currentFrame.h * 2;
 

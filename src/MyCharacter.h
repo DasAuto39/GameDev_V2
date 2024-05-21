@@ -9,20 +9,18 @@ class MyCharacter
 {
 public:
     MyCharacter(float p_x, float p_y, SDL_Texture* p_tex);
-    float getXpos();
-    float getYpos();
     void handleEvent(SDL_Event& event);
-    void update();
-    void checkCollision(Entity entities[], int size);
+    void update(Entity crates[], int numCrates);
+    void checkCollision(Entity crates[], int numCrates);
     SDL_Texture* getTex();
     SDL_Rect* rtunSRCMC();
     SDL_Rect* rtunDSTMC();
     SDL_Rect getCurrentFrame();
 private:
     SDL_Rect srcMC, dstMC;
-    float xpos, ypos;
-    int life;
-    int xspeed, yspeed;
+    float xposMC, yposMC;
+    int lifeMC;
+    int xspeedMC, yspeedMC;
     SDL_Rect currentFrame;
     SDL_Texture* tex;
 };

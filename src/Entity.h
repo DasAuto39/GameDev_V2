@@ -7,12 +7,16 @@
 class Entity{
 public:
 	Entity(float p_x, float p_y, SDL_Texture* p_tex);
-	float getX();
-	float getY();
+	float getXE();
+	float getYE();
+    SDL_Rect* rtunSRCE();
+    SDL_Rect* rtunDSTE();
+    SDL_Rect GetNotDSTptr();
 	SDL_Texture* getTex();
 	SDL_Rect getCurrentFrame();
 private:
-	float x, y;
+	float xE, yE;
+    SDL_Rect srcE, dstE;
 	SDL_Rect currentFrame;
 	SDL_Texture* tex;
 };
