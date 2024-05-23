@@ -8,6 +8,7 @@ class Collision
 {
 public:
     static bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
+    static bool checkCollisionCrateAndBall(const SDL_Rect& a, const SDL_Rect& b);
 };
 
 

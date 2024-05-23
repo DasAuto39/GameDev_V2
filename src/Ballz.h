@@ -2,24 +2,27 @@
 #define BALLZ_H
 #include "SDL.h"
 #include "SDL_image.h"
-#include "ballmovement.h"
 
-class Ballz : public ballmovement
-{
-    public:
-        Ballz();
-        Ballz(float p_x, float p_y, SDL_Texture* p_tex);
-        SDL_Rect* rtunSRCB();
-        SDL_Rect* rtunDSTB();
-        SDL_Rect GetNotDSTptrB();
-        SDL_Texture* getTexB();
-        void updateLtoR();
-        void updateRtoL();
-        SDL_Rect getCurrentFrameB();
-      private:
-        SDL_Rect srcB, dstB;
-        SDL_Rect currentFrameB;
-        SDL_Texture* texB;
+class Ballz {
+public:
+    Ballz();
+    Ballz(float p_x, float p_y, SDL_Texture* p_tex);
+    SDL_Rect* rtunSRCB();
+    SDL_Rect* rtunDSTB();
+    SDL_Rect GetNotDSTptrB();
+    SDL_Texture* getTexB();
+    float GetXposB() const;
+    float GetYposB() const;
+    SDL_Rect getCurrentFrameB();
+
+protected:
+    float xposB, yposB;
+    int xspeedB, yspeedB;
+
+private:
+    SDL_Rect srcB, dstB;
+    SDL_Rect currentFrameB;
+    SDL_Texture* texB;
 };
 
 #endif // BALLZ_H

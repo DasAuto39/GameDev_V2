@@ -11,7 +11,7 @@ public:
 	float getYE();
     SDL_Rect* rtunSRCE();
     SDL_Rect* rtunDSTE();
-    SDL_Rect GetNotDSTptr();
+    SDL_Rect GetNotptrDSTE();
 	SDL_Texture* getTex();
 	SDL_Rect getCurrentFrame();
 private:

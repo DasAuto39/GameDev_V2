@@ -37,7 +37,7 @@
 	"SDL.h"
 	"SDL_image.h"
 
-1716471003 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\main.cpp
+1716474037 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -55,7 +55,7 @@
 	"MyCharacter.h"
 	"Ballz.h"
 
-1716300075 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.h
+1716474383 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.h
 	"SDL.h"
 	"SDL_image.h"
 
@@ -64,7 +64,7 @@
 	"SDL.h"
 	"SDL_image.h"
 
-1716300127 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.cpp
+1716474390 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\entity.cpp
 	"Entity.h"
 
 1716161446 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\map.cpp
@@ -91,29 +91,29 @@
 	"SDL_image.h"
 	"Entity.h"
 
-1716300871 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.cpp
+1716474289 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.cpp
 	"MyCharacter.h"
 	"Collision.h"
 	"Entity.h"
 	"iostream"
 
-1716299370 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\collision.cpp
+1716474179 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\collision.cpp
 	"Collision.h"
 
-1716299224 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\collision.h
+1716474112 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\collision.h
 	"SDL.h"
 
-1716472105 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.cpp
+1716473566 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.cpp
 	"Ballz.h"
 
-1716472105 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.h
+1716473566 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.h
 	"SDL.h"
 	"SDL_image.h"
-	"ballmovement.h"
 
-1716472105 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.h
+1716474037 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.h
+	"Ballz.h"
 	"SDL.h"
 
-1716472105 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.cpp
+1716474037 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.cpp
 	"ballmovement.h"
 

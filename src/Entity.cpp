@@ -44,7 +44,7 @@ SDL_Rect* Entity::rtunDSTE()
 	return &dstE;
 }
 
-SDL_Rect Entity::GetNotDSTptr()
+SDL_Rect Entity::GetNotptrDSTE()
 {
     return dstE;
 }

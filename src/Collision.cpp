@@ -36,3 +36,8 @@ bool Collision::checkCollision(const SDL_Rect& a, const SDL_Rect& b)
     // If none of the sides from A are outside B
     return true;
 }
+
+bool Collision::checkCollisionCrateAndBall(const SDL_Rect& a, const SDL_Rect& b)
+{
+
+}

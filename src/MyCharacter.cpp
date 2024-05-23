@@ -84,7 +84,7 @@ void MyCharacter::checkCollision(Entity crates[], int numCrates)
 
     for (int i = 0; i < numCrates; i++)
     {
-        if (Collision::checkCollision(MC, crates[i].GetNotDSTptr()))
+        if (Collision::checkCollision(MC, crates[i].GetNotptrDSTE()))
         {
             // Revert movement if collision detected
             xposMC -= xspeedMC;
