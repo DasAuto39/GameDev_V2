@@ -2,8 +2,9 @@
 #define BALLZ_H
 #include "SDL.h"
 #include "SDL_image.h"
+#include "ballmovement.h"
 
-class Ballz
+class Ballz : public ballmovement
 {
     public:
         Ballz();
@@ -13,11 +14,10 @@ class Ballz
         SDL_Rect GetNotDSTptrB();
         SDL_Texture* getTexB();
         void updateLtoR();
+        void updateRtoL();
         SDL_Rect getCurrentFrameB();
       private:
         SDL_Rect srcB, dstB;
-        float xposB, yposB;
-        int xspeedB, yspeedB;
         SDL_Rect currentFrameB;
         SDL_Texture* texB;
 };

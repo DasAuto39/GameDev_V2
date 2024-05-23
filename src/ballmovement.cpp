@@ -1,20 +1,27 @@
 #include "ballmovement.h"
 
 
-ballmovement::ballmovement(float p_x, float p_y, int p_xspeed, int p_yspeed)
-    : xpos(p_x), ypos(p_y), xspeed(p_xspeed), yspeed(p_yspeed)
+ballmovement::ballmovement(float p_x, float p_y)
+: xposB(p_x), yposB(p_y), xspeedB(2), yspeedB(0)
 {}
 
-void ballmovement::updateLtoR() {
-    xpos += xspeed;
-    ypos += yspeed;
+void ballmovement::updateLtoR()
+{
 
-    // Bounce off the edges of the screen (example values, adjust as necessary)
-    if (xpos < 0 ) {
-        xspeed = +xspeed;
-    }
-    if (xpos > 0){
-        xspeed = +xspeed;
+    xposB += xspeedB; // Move the ball to the right
+
+    if (xposB > 720) // Check if the ball has gone off the screen
+    {
+        xposB = 30; // Reset xposB to the left edge
     }
 }
 
+void ballmovement::updateRtoL()
+{
+    xposB -= xspeedB; // Move the ball to the right
+
+    if (xposB < -32) // Check if the ball has gone off the screen
+    {
+        xposB = 604; // Reset xposB to the left edge
+    }
+}

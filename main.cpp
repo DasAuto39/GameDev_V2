@@ -7,13 +7,12 @@
 #include "Map.h"
 #include "MyCharacter.h"
 #include "Ballz.h"
-
-
+#include "ballmovement.h"
 
 int main(int argc, char** argv)
 {
     const int FPS = 60;
-    const int frameDelay = 1000/FPS;
+    const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
     int frameTime;
@@ -40,16 +39,21 @@ int main(int argc, char** argv)
     SDL_Texture* MC = window.loadTexture("img_obj/elf_f_idle_anim_f0.png");
     SDL_Texture* ball = window.loadTexture("img_obj/tile000.png");
 
-    //Ballz
-    Ballz ballin =  Ballz(30,100,ball);
-
-
+    // Initialize Ballz objects
+    Ballz ballLtoR[2] = {
+        Ballz(32, 100, ball),
+        Ballz(32, 400, ball)
+    };
+    Ballz ballRtoL[2] = {
+        Ballz(604,160, ball),
+        Ballz(604,460, ball)
+    };
     // Create an array of entities
     Entity entities[4] = {
         Entity(-32, 100, Batu),
-        Entity(636, 100, Batu),
+        Entity(636, 160, Batu),
         Entity(-32, 400, Batu),
-        Entity(636, 400, Batu)
+        Entity(636, 460, Batu)
     };
 
     Entity Crates[8] = {
@@ -60,7 +64,7 @@ int main(int argc, char** argv)
         Entity(400, 400, crates),
         Entity(450, 300, crates),
         Entity(500, 200, crates),
-        Entity(500, 100, crates),
+        Entity(500, 100, crates)
     };
 
     MyCharacter Mine(350, 500, MC);
@@ -70,23 +74,23 @@ int main(int argc, char** argv)
     while (gameRunning)
     {
         frameStart = SDL_GetTicks();
-        frameTime = SDL_GetTicks() - frameStart;
-
-        if(frameDelay > frameTime)
-        {
-            SDL_Delay(frameDelay -frameTime);
-        }
 
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
                 gameRunning = false;
-                Mine.handleEvent(event);
 
+            Mine.handleEvent(event);
         }
 
-        Mine.update(Crates, 10);
-        ballin.updateLtoR();
+        Mine.update(Crates, 8);
+
+        // Update Ballz objects
+        for (int i = 0; i < 2; i++) {
+            ballLtoR[i].updateLtoR();
+        }
+
+
         window.clear();
         gameMap.cldrawmap();
 
@@ -95,13 +99,26 @@ int main(int argc, char** argv)
         {
             window.render(entities[i]);
         }
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
             window.render(Crates[i]);
         }
-        window.render(ballin);
+        for (int i = 0; i < 2; i++) {
+            window.render(ballLtoR[i]);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            window.render(ballRtoL[i]);
+        }
         window.render(Mine);
         window.display();
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameDelay > frameTime)
+        {
+            SDL_Delay(frameDelay - frameTime);
+        }
     }
 
     window.cleanUp();

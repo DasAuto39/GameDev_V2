@@ -3,7 +3,7 @@
 
 
 Ballz::Ballz(float p_x, float p_y, SDL_Texture* p_tex)
-:xposB(p_x), yposB(p_y), texB(p_tex)
+:ballmovement(p_x, p_y), texB(p_tex)
 {
 	currentFrameB.x = 0;
 	currentFrameB.y = 0;
@@ -34,15 +34,13 @@ SDL_Rect* Ballz::rtunDSTB()
 
 void Ballz::updateLtoR()
 {
-    xspeedB = 10;
-    xposB += xspeedB; // Move the ball to the right
-
-    if (xposB > 720) // Check if the ball has gone off the screen
-    {
-        xposB = 0; // Reset xposB to the left edge
-    }
+    ballmovement::updateLtoR();
 }
 
+void Ballz::updateRtoL()
+{
+    ballmovement::updateRtoL();
+}
 
 SDL_Rect Ballz::GetNotDSTptrB()
 {

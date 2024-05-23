@@ -2,17 +2,16 @@
 #define BALLMOVEMENT_H
 
 
-//class ballmovement
 #include "SDL.h"
 
 class ballmovement {
 public:
-    ballmovement(float p_x, float p_y, int p_xspeed, int p_yspeed);
+    ballmovement(float p_x, float p_y);
     void updateLtoR();
-
+    void updateRtoL();
 
 protected:
-    float xpos, ypos;
-    int xspeed, yspeed;
+    float xposB, yposB;
+    int xspeedB, yspeedB;
 };
 #endif // BALLMOVEMENT_H
