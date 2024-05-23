@@ -6,6 +6,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Entity.h"
+#include "MyCharacter.h"
+#include "Ballz.h"
 
 
 class MyCharacter;
@@ -17,6 +19,7 @@ public:
     SDL_Texture* loadTexture(const char* p_filePath);
 	void render(Entity& p_entity);
     void render(MyCharacter& p_MyCharacter);
+    void render(Ballz& p_ball);
     void render(SDL_Texture* texture,SDL_Rect src, SDL_Rect dst);
 	void display();
     void cleanUp();

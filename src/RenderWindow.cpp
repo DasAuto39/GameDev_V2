@@ -5,7 +5,7 @@
 #include "RenderWindow.h"
 #include "SDL.h"
 #include "SDL_image.h"
-#include "MyCharacter.h"
+
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
 	:window(NULL), renderer(NULL)
@@ -44,6 +44,10 @@ void RenderWindow::render(MyCharacter& p_MC)
 	SDL_RenderCopy(renderer, p_MC.getTex(), p_MC.rtunSRCMC(), p_MC.rtunDSTMC());
 }
 
+void RenderWindow::render(Ballz& p_ball)
+{
+	SDL_RenderCopy(renderer, p_ball.getTexB(), p_ball.rtunSRCB(), p_ball.rtunDSTB());
+}
 
 void RenderWindow::render(SDL_Texture* texture, SDL_Rect src, SDL_Rect dst)  // Ensure this is defined
 {

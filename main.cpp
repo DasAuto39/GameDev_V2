@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Map.h"
 #include "MyCharacter.h"
+#include "Ballz.h"
 
 
 
@@ -37,6 +38,11 @@ int main(int argc, char** argv)
     SDL_Texture* Batu = window.loadTexture("img_obj/1.png");
     SDL_Texture* crates = window.loadTexture("img_obj/crate.png");
     SDL_Texture* MC = window.loadTexture("img_obj/elf_f_idle_anim_f0.png");
+    SDL_Texture* ball = window.loadTexture("img_obj/tile000.png");
+
+    //Ballz
+    Ballz ballin =  Ballz(30,100,ball);
+
 
     // Create an array of entities
     Entity entities[4] = {
@@ -92,7 +98,7 @@ int main(int argc, char** argv)
         {
             window.render(Crates[i]);
         }
-
+        window.render(ballin);
         window.render(Mine);
         window.display();
     }
