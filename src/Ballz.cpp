@@ -32,6 +32,18 @@ SDL_Rect* Ballz::rtunDSTB()
 	return &dstB;
 }
 
+void Ballz::updateLtoR()
+{
+    xspeedB = 10;
+    xposB += xspeedB; // Move the ball to the right
+
+    if (xposB > 720) // Check if the ball has gone off the screen
+    {
+        xposB = 0; // Reset xposB to the left edge
+    }
+}
+
+
 SDL_Rect Ballz::GetNotDSTptrB()
 {
 
@@ -47,4 +59,3 @@ SDL_Rect Ballz::getCurrentFrameB()
 
 }
     //dtor
-

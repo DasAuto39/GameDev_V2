@@ -12,6 +12,7 @@ class Ballz
         SDL_Rect* rtunDSTB();
         SDL_Rect GetNotDSTptrB();
         SDL_Texture* getTexB();
+        void updateLtoR();
         SDL_Rect getCurrentFrameB();
       private:
         SDL_Rect srcB, dstB;
