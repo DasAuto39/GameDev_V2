@@ -9,7 +9,8 @@
 #include "Ballz.h"
 #include "ballmovement.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
 
@@ -56,13 +57,13 @@ int main(int argc, char** argv) {
 
     Entity Crates[8] = {
         Entity(250, 54, crates),
-        Entity(344, 200, crates),
+        Entity(344, 260, crates),
         Entity(255, 520, crates),
         Entity(200, 400, crates),
         Entity(400, 400, crates),
         Entity(450, 300, crates),
         Entity(500, 200, crates),
-        Entity(500, 100, crates)
+        Entity(500, 30, crates)
     };
 
     MyCharacter Mine(350, 500, MC);
@@ -83,8 +84,8 @@ int main(int argc, char** argv) {
 
         // Update Ballz objects
         for (int i = 0; i < 2; i++) {
-            ballLtoR[i].updateLtoR();
-            ballRtoL[i].updateRtoL();
+            ballLtoR[i].updateLtoR(Crates, 8);
+            ballRtoL[i].updateRtoL(Crates, 8);
         }
 
         window.clear();

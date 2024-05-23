@@ -9,7 +9,6 @@ public:
     Ballz(float p_x, float p_y, SDL_Texture* p_tex);
     SDL_Rect* rtunSRCB();
     SDL_Rect* rtunDSTB();
-    SDL_Rect GetNotDSTptrB();
     SDL_Texture* getTexB();
     float GetXposB() const;
     float GetYposB() const;
