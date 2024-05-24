@@ -11,6 +11,7 @@ public:
     ballmovement(float p_x, float p_y, SDL_Texture* p_tex);
     void updateLtoR(Entity crates[], int numCrate);
     void updateRtoL(Entity crates[], int numCrate);
+    SDL_Rect GetNotptrDSTBMB();
     void checkCollisionLtoR(Entity crates[], int numCrates);
     void checkCollisionRtoL(Entity crates[], int numCrates);
 };

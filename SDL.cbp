@@ -35,6 +35,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Ballz.cpp" />
+		<Unit filename="src/Ballz.h" />
 		<Unit filename="src/Collision.cpp" />
 		<Unit filename="src/Collision.h" />
 		<Unit filename="src/Entity.cpp" />
@@ -45,6 +47,8 @@
 		<Unit filename="src/MyCharacter.h" />
 		<Unit filename="src/RenderWindow.cpp" />
 		<Unit filename="src/RenderWindow.h" />
+		<Unit filename="src/ballmovement.cpp" />
+		<Unit filename="src/ballmovement.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

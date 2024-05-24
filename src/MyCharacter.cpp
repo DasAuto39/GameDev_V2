@@ -1,5 +1,4 @@
 #include "MyCharacter.h"
-#include "Collision.h"
 #include "Entity.h"
 #include "iostream"
 
@@ -75,27 +74,46 @@ void MyCharacter::update(Entity crates[], int numCrates)
             yspeedMC = 0;
             yposMC = 576;
         }
-    checkCollision(crates, numCrates);
+    checkCollisionCrateAndMC(crates, numCrates);
 }
 
-void MyCharacter::checkCollision(Entity crates[], int numCrates)
+void MyCharacter::checkCollisionCrateAndMC(Entity crates[], int numCrates)
 {
-    SDL_Rect MC = {static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2};
+    SDL_Rect MC = { static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2 };
 
     for (int i = 0; i < numCrates; i++)
     {
         if (Collision::checkCollision(MC, crates[i].GetNotptrDSTE()))
         {
-            // Revert movement if collision detected
+
             xposMC -= xspeedMC;
             yposMC -= yspeedMC;
-
             xspeedMC = 0;
             yspeedMC = 0;
             break;
         }
     }
 }
+
+void MyCharacter::checkCollisionWithBalls(ballmovement ball[],int numBall)
+{
+    SDL_Rect MC = { static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2 };
+
+    for (int i = 0; i < numBall; i++)
+    {
+        SDL_Rect ballRect = ball[i].GetNotptrDSTBMB();
+        if (Collision::checkCollision(MC, ballRect))
+        {
+            std::cout << "Collision detected with ball " << i << std::endl; // Debugging
+            xposMC = 350;
+            yposMC = 500;
+            xspeedMC = 0;
+            yspeedMC = 0;
+            break;
+        }
+    }
+}
+
 
 SDL_Rect* MyCharacter::rtunDSTMC()
 {

@@ -27,17 +27,14 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    // Initialize the window
     RenderWindow window("GAME v1.0", 700, 640);
     Map gameMap(&window);
 
-    // Load the texture for the entities
     SDL_Texture* Batu = window.loadTexture("img_obj/1.png");
     SDL_Texture* crates = window.loadTexture("img_obj/crate.png");
     SDL_Texture* MC = window.loadTexture("img_obj/elf_f_idle_anim_f0.png");
     SDL_Texture* ball = window.loadTexture("img_obj/tile000.png");
 
-    // Initialize Ballz objects
     ballmovement ballLtoR[2] = {
         ballmovement(32, 100, ball),
         ballmovement(32, 400, ball)
@@ -47,7 +44,6 @@ int main(int argc, char** argv)
         ballmovement(604, 460, ball)
     };
 
-    // Create an array of entities
     Entity entities[4] = {
         Entity(-32, 100, Batu),
         Entity(636, 160, Batu),
@@ -80,9 +76,11 @@ int main(int argc, char** argv)
             Mine.handleEvent(event);
         }
 
-        Mine.update(Crates, 8);
+        Mine.update(Crates,8);
+        Mine.checkCollisionWithBalls(ballLtoR, 2);
+        Mine.checkCollisionWithBalls(ballRtoL, 2);
 
-        // Update Ballz objects
+
         for (int i = 0; i < 2; i++) {
             ballLtoR[i].updateLtoR(Crates, 8);
             ballRtoL[i].updateRtoL(Crates, 8);
@@ -91,7 +89,6 @@ int main(int argc, char** argv)
         window.clear();
         gameMap.cldrawmap();
 
-        // Render all entities
         for (int i = 0; i < 4; i++) {
             window.render(entities[i]);
         }

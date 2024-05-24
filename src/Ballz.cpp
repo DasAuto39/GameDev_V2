@@ -34,6 +34,11 @@ float Ballz::GetYposB() const {
     return yposB;
 }
 
+SDL_Rect Ballz::GetNotptrDSTB()
+{
+    return dstB;
+}
+
 SDL_Texture* Ballz::getTexB() {
     return texB;
 }

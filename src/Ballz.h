@@ -12,6 +12,7 @@ public:
     SDL_Texture* getTexB();
     float GetXposB() const;
     float GetYposB() const;
+    SDL_Rect GetNotptrDSTB();
     SDL_Rect getCurrentFrameB();
 
 protected:

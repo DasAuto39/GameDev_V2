@@ -15,6 +15,11 @@ void ballmovement::updateLtoR(Entity crates[], int numCrates) {
     checkCollisionLtoR(crates, numCrates);
 }
 
+SDL_Rect ballmovement::GetNotptrDSTBMB()
+{
+    return Ballz::GetNotptrDSTB();
+}
+
 void ballmovement::updateRtoL(Entity crates[], int numCrates) {
     xposB -= xspeedB; // Move the ball to the left
 

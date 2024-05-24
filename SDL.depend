@@ -37,7 +37,7 @@
 	"SDL.h"
 	"SDL_image.h"
 
-1716475638 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\main.cpp
+1716523813 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -86,14 +86,16 @@
 1716171413 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\colission.h
 	"SDL.h"
 
-1716300848 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.h
+1716524115 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.h
 	"SDL.h"
 	"SDL_image.h"
 	"Entity.h"
-
-1716474397 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.cpp
-	"MyCharacter.h"
 	"Collision.h"
+	"ballmovement.h"
+	"Ballz.h"
+
+1716524681 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\mycharacter.cpp
+	"MyCharacter.h"
 	"Entity.h"
 	"iostream"
 
@@ -103,20 +105,20 @@
 1716474112 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\collision.h
 	"SDL.h"
 
-1716475011 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.cpp
+1716524257 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.cpp
 	"Ballz.h"
 
-1716474849 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.h
+1716476375 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballz.h
 	"SDL.h"
 	"SDL_image.h"
 
-1716475753 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.h
+1716476478 c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.h
 	"Ballz.h"
 	"SDL.h"
 	"Collision.h"
 	"Entity.h"
 
-1716475859 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.cpp
+1716524722 source:c:\users\akhmad\desktop\modul proglan\sdl\gamedev_v2\src\ballmovement.cpp
 	"ballmovement.h"
 	"Collision.h"
 
