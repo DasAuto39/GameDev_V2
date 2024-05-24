@@ -1,11 +1,12 @@
 #include "MyCharacter.h"
 #include "Entity.h"
 #include "iostream"
+#include <string>
 
 
 
 MyCharacter::MyCharacter(float p_x, float p_y, SDL_Texture* p_tex)
-    : xposMC(p_x), yposMC(p_y), tex(p_tex), xspeedMC(0), yspeedMC(0), lifeMC(3)
+    : xposMC(p_x), yposMC(p_y), tex(p_tex), xspeedMC(0), yspeedMC(0)
 {
     currentFrame.x = 0;
     currentFrame.y = 0;
@@ -74,6 +75,7 @@ void MyCharacter::update(Entity crates[], int numCrates)
             yspeedMC = 0;
             yposMC = 576;
         }
+
     checkCollisionCrateAndMC(crates, numCrates);
 }
 
@@ -97,6 +99,9 @@ void MyCharacter::checkCollisionCrateAndMC(Entity crates[], int numCrates)
 
 void MyCharacter::checkCollisionWithBalls(ballmovement ball[],int numBall)
 {
+    if (SDL_GetTicks() - gracePeriodStart <= gracePeriodDuration) {
+        return;
+    }
     SDL_Rect MC = { static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2 };
 
     for (int i = 0; i < numBall; i++)
@@ -105,14 +110,23 @@ void MyCharacter::checkCollisionWithBalls(ballmovement ball[],int numBall)
         if (Collision::checkCollision(MC, ballRect))
         {
             std::cout << "Collision detected with ball " << i << std::endl; // Debugging
-            xposMC = 350;
-            yposMC = 500;
-            xspeedMC = 0;
-            yspeedMC = 0;
+            lifeMC = lifeMC -1;
+            respawn();
+
             break;
         }
     }
 }
+
+
+void MyCharacter::respawn() {
+    xposMC = 350;
+    yposMC = 100;
+    xspeedMC = 0;
+    yspeedMC = 0;
+    gracePeriodStart = SDL_GetTicks(); // Reset the grace period timer
+}
+
 
 
 SDL_Rect* MyCharacter::rtunDSTMC()
@@ -144,4 +158,16 @@ SDL_Texture* MyCharacter::getTex()
 SDL_Rect MyCharacter::getCurrentFrame()
 {
     return currentFrame;
+}
+
+const char* MyCharacter::getLifeMC()
+{
+	std::string L = std::to_string(lifeMC);
+	L =" Life " + L;
+	return L.c_str();
+}
+
+int MyCharacter::getLifeMCINT()
+{
+    return lifeMC;
 }

@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <iostream>
 
 #include "RenderWindow.h"
@@ -16,6 +17,11 @@ int main(int argc, char** argv)
 
     Uint32 frameStart;
     int frameTime;
+
+    if (TTF_Init() < 0) {
+        std::cout << "TTF_Init has failed. Error: " << TTF_GetError() << std::endl;
+        return 1;
+    }
 
     if (SDL_Init(SDL_INIT_VIDEO) > 0) {
         std::cout << "SDL_Init has failed. SDL_ERROR: " << SDL_GetError() << std::endl;
@@ -34,21 +40,23 @@ int main(int argc, char** argv)
     SDL_Texture* crates = window.loadTexture("img_obj/crate.png");
     SDL_Texture* MC = window.loadTexture("img_obj/elf_f_idle_anim_f0.png");
     SDL_Texture* ball = window.loadTexture("img_obj/tile000.png");
+    TTF_Font* font16 = TTF_OpenFont("fonts/cocogoose.ttf", 16);
+    SDL_Color white = { 255, 255, 255 };
 
     ballmovement ballLtoR[2] = {
         ballmovement(32, 100, ball),
-        ballmovement(32, 400, ball)
+        ballmovement(32, 300, ball)
     };
     ballmovement ballRtoL[2] = {
         ballmovement(604, 160, ball),
-        ballmovement(604, 460, ball)
+        ballmovement(604, 300, ball)
     };
 
     Entity entities[4] = {
         Entity(-32, 100, Batu),
         Entity(636, 160, Batu),
-        Entity(-32, 400, Batu),
-        Entity(636, 460, Batu)
+        Entity(-32, 300, Batu),
+        Entity(636, 300, Batu)
     };
 
     Entity Crates[8] = {
@@ -62,8 +70,9 @@ int main(int argc, char** argv)
         Entity(500, 30, crates)
     };
 
-    MyCharacter Mine(350, 500, MC);
+    MyCharacter Mine(350, 100, MC);
     bool gameRunning = true;
+    bool gameOver = false;
     SDL_Event event;
 
     while (gameRunning) {
@@ -73,17 +82,24 @@ int main(int argc, char** argv)
             if (event.type == SDL_QUIT)
                 gameRunning = false;
 
-            Mine.handleEvent(event);
+            if (!gameOver) {
+                Mine.handleEvent(event);
+            }
         }
 
-        Mine.update(Crates,8);
-        Mine.checkCollisionWithBalls(ballLtoR, 2);
-        Mine.checkCollisionWithBalls(ballRtoL, 2);
+        if (!gameOver) {
+            Mine.update(Crates, 8);
+            Mine.checkCollisionWithBalls(ballLtoR, 2);
+            Mine.checkCollisionWithBalls(ballRtoL, 2);
 
+            for (int i = 0; i < 2; i++) {
+                ballLtoR[i].updateLtoR(Crates, 8);
+                ballRtoL[i].updateRtoL(Crates, 8);
+            }
 
-        for (int i = 0; i < 2; i++) {
-            ballLtoR[i].updateLtoR(Crates, 8);
-            ballRtoL[i].updateRtoL(Crates, 8);
+            if (Mine.getLifeMCINT() == 0) {
+                gameOver = true;
+            }
         }
 
         window.clear();
@@ -101,6 +117,12 @@ int main(int argc, char** argv)
         }
 
         window.render(Mine);
+        window.render(0, 0, Mine.getLifeMC(), font16, white);
+
+        if (gameOver) {
+            window.render(350 - 50, 320 - 16, "You die", font16, white);  // Adjust x and y coordinates to center the text
+        }
+
         window.display();
 
         frameTime = SDL_GetTicks() - frameStart;
@@ -111,6 +133,7 @@ int main(int argc, char** argv)
     }
 
     window.cleanUp();
+    TTF_CloseFont(font16);
     SDL_Quit();
 
     return 0;

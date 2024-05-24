@@ -1,10 +1,8 @@
 #ifndef RENDERWINDOW_H
 #define RENDERWINDOW_H
-
-
-
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include "Entity.h"
 #include "MyCharacter.h"
 #include "Ballz.h"
@@ -21,6 +19,8 @@ public:
     void render(MyCharacter& p_MyCharacter);
     void render(Ballz& p_ball);
     void render(SDL_Texture* texture,SDL_Rect src, SDL_Rect dst);
+    void render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
+
 	void display();
     void cleanUp();
     void clear();
