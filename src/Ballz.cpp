@@ -1,7 +1,7 @@
 #include "Ballz.h"
 
 Ballz::Ballz(float p_x, float p_y, SDL_Texture* p_tex)
-: xposB(p_x), yposB(p_y), texB(p_tex), xspeedB(2), yspeedB(0) {
+: xposB(p_x), yposB(p_y), texB(p_tex), xspeedB(2), yspeedB(1) {
     currentFrameB.x = 0;
     currentFrameB.y = 0;
     currentFrameB.w = 32;
@@ -46,3 +46,6 @@ SDL_Texture* Ballz::getTexB() {
 SDL_Rect Ballz::getCurrentFrameB() {
     return currentFrameB;
 }
+
+
+

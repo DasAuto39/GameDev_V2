@@ -52,3 +52,23 @@ void ballmovement::checkCollisionRtoL(Entity crates[], int numCrates) {
         }
     }
 }
+
+/*void ballmovement::updateLtoR(Entity crates[], int numCrates, MyCharacter &character) {
+    SDL_Rect charRect = *character.rtunDSTMC(); // Get the current position of MyCharacter
+    float charX = charRect.x;
+    float charY = charRect.y;
+
+    float dx = charX - xposB; // Calculate the difference in x positions
+    float dy = charY - yposB; // Calculate the difference in y positions
+    float distance = std::sqrt(dx * dx + dy * dy); // Calculate the distance to MyCharacter
+    double angle = std::atan2(dx,dy);
+    double radians = angle * M_PI / 180.0; // Convert to radians
+
+    // Normalize the direction and scale by the ball's speed
+    xposB = xspeedB;
+    yposB = yspeedB;
+
+    checkCollisionLtoR(crates, numCrates);
+}
+
+*/

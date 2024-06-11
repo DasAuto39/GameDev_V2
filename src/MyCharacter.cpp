@@ -1,5 +1,7 @@
 #include "MyCharacter.h"
 #include "Entity.h"
+#include "ballmovement.h"
+#include "Ballz.h"
 #include "iostream"
 #include <string>
 
@@ -118,10 +120,22 @@ void MyCharacter::checkCollisionWithBalls(ballmovement ball[],int numBall)
     }
 }
 
+bool MyCharacter::checkCollisionWithFlask(Entity& flask)
+{
+    SDL_Rect MC = { static_cast<int>(xposMC), static_cast<int>(yposMC), currentFrame.w * 2, currentFrame.h * 2 };
+
+    if (Collision::checkCollision(MC, flask.GetNotptrDSTE()))
+    {
+        std::cout << "Collision detected with flask" << std::endl; // Debugging
+        return true;
+    }
+    return false;
+}
+
 
 void MyCharacter::respawn() {
     xposMC = 350;
-    yposMC = 100;
+    yposMC = 550;
     xspeedMC = 0;
     yspeedMC = 0;
     gracePeriodStart = SDL_GetTicks(); // Reset the grace period timer
@@ -167,7 +181,29 @@ const char* MyCharacter::getLifeMC()
 	return L.c_str();
 }
 
+const char* MyCharacter::getPointMC()
+{
+	std::string L = std::to_string(pointMC);
+	L =" Point " + L;
+	return L.c_str();
+}
+
+void MyCharacter::setLife(int rlife) {
+    this->lifeMC = rlife;
+}
+
+void MyCharacter::setPoint(int rpoint)
+{
+    this->pointMC = rpoint;
+}
+
 int MyCharacter::getLifeMCINT()
 {
     return lifeMC;
+}
+
+int MyCharacter::getPointMCINT()
+{
+
+    return pointMC;
 }

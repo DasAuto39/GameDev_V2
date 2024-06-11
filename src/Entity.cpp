@@ -54,3 +54,9 @@ SDL_Rect Entity::getCurrentFrame()
 {
 	return currentFrame;
 }
+
+void Entity::setPosition(float p_x, float p_y)
+{
+    currentFrame.x = p_x;
+    currentFrame.y = p_y;
+}

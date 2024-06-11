@@ -14,7 +14,6 @@ public:
     float GetYposB() const;
     SDL_Rect GetNotptrDSTB();
     SDL_Rect getCurrentFrameB();
-
 protected:
     float xposB, yposB;
     int xspeedB, yspeedB;

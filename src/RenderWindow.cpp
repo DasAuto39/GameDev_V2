@@ -75,6 +75,9 @@ void RenderWindow::render(float p_x, float p_y, const char* p_text, TTF_Font* fo
     SDL_DestroyTexture(message);  // Don't forget to destroy the texture to avoid memory leaks
 }
 
+
+
+
 void RenderWindow::display()
 {
 	SDL_RenderPresent(renderer);

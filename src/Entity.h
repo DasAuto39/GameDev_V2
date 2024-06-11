@@ -14,6 +14,7 @@ public:
     SDL_Rect GetNotptrDSTE();
 	SDL_Texture* getTex();
 	SDL_Rect getCurrentFrame();
+	void setPosition(float x, float y);
 private:
 	float xE, yE;
     SDL_Rect srcE, dstE;

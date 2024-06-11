@@ -16,10 +16,12 @@ public:
 	RenderWindow(const char* p_title, int p_w, int p_h);
     SDL_Texture* loadTexture(const char* p_filePath);
 	void render(Entity& p_entity);
-    void render(MyCharacter& p_MyCharacter);
+    void render(MyCharacter& p_MC);
     void render(Ballz& p_ball);
     void render(SDL_Texture* texture,SDL_Rect src, SDL_Rect dst);
     void render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
+
+
 
 	void display();
     void cleanUp();
