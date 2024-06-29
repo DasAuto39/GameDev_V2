@@ -207,3 +207,13 @@ int MyCharacter::getPointMCINT()
 
     return pointMC;
 }
+
+float MyCharacter::getxpos()
+{
+    return xposMC;
+}
+float MyCharacter::getypos()
+{
+
+    return yposMC;
+}

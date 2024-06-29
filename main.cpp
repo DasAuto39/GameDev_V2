@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <vector>
 
+#include "SaveLoad.h"
 #include "RenderWindow.h"
 #include "Entity.h"
 #include "Map.h"
@@ -26,6 +27,7 @@ void resetGame(MyCharacter &Mine, Entity Crates[], ballmovement ballLtoR[], ball
     ballRtoL[0] = ballmovement(604, 160, ball);
     ballRtoL[1] = ballmovement(604, 310, ball);
     ballRtoL[2] = ballmovement(604, 510, ball);
+
     // Generate possible positions for crates
     std::vector<SDL_Rect> positions[8];
     for (int x = 0; x < 580; x += 50) {
@@ -129,16 +131,16 @@ int main(int argc, char** argv) {
     Entity Crates[8] =
     {
         Entity(250, 54, crates),
-        Entity(344, 260, crates),
-        Entity(255, 520, crates),
-        Entity(200, 400, crates),
-        Entity(400, 400, crates),
-        Entity(450, 300, crates),
-        Entity(500, 200, crates),
-        Entity(500, 30, crates)
+        Entity(344, 54, crates),
+        Entity(54, 152, crates),
+        Entity(598, 152, crates),
+        Entity(152, 250, crates),
+        Entity(500, 250, crates),
+        Entity(250, 442, crates),
+        Entity(344, 442, crates)
     };
 
-    MyCharacter Mine(350, 550, MC);
+    MyCharacter Mine(250, 300, MC);
     bool gameRunning = true;
     bool gameOver = false;
     bool inMainMenu = true;
@@ -153,54 +155,45 @@ int main(int argc, char** argv) {
     while (gameRunning) {
         frameStart = SDL_GetTicks();
 
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-            {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
                 gameRunning = false;
             }
-            if (inMainMenu)
-            {
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)
-                {
+            if (inMainMenu) {
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE) {
                     inMainMenu = false; // Start the game
                 }
-            }
-            else
-            {
-                if (!gameOver)
-                {
-                    if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_p)
-                    {
-                        gamePause = true;
-                    }
-
-                    if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_e)
-                    {
-                        gameRunning = false;
-                    }
-
-                    else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_c)
-                    {
-                        gamePause = false;
-                    }
-
-                    if (!gamePause)
-                    {
-                        Mine.handleEvent(event); // Only handle events when not paused
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_l) {
+                    // Load game state
+                    if (!loadGame(Mine, Crates, MC, crates)) {
+                        std::cerr << "Failed to load the game!" << std::endl;
+                    } else {
+                        inMainMenu = false; // Start the game if load is successful
                     }
                 }
-                else
-                {
+            } else {
+                if (!gameOver) {
+                    if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_p) {
+                        gamePause = true;
+                    }
+                    if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_e) {
+                        // Save game state before exiting
+                        saveGame(Mine, Crates);
+                        gameRunning = false;
+                    }
+                    if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_c) {
+                        gamePause = false;
+                    }
+                    if (!gamePause) {
+                        Mine.handleEvent(event); // Only handle events when not paused
+                    }
+                } else {
                     if (event.type == SDL_KEYDOWN) {
-                        if (event.key.keysym.sym == SDLK_RETURN)
-                        {
+                        if (event.key.keysym.sym == SDLK_RETURN) {
                             // Restart the game
                             resetGame(Mine, Crates, ballLtoR, ballRtoL, MC, ball, crates);
                             gameOver = false;
-                        }
-                        else if (event.key.keysym.sym == SDLK_q)
-                        {
+                        } else if (event.key.keysym.sym == SDLK_q) {
                             gameRunning = false; // End the game
                         }
                     }
@@ -209,78 +202,68 @@ int main(int argc, char** argv) {
         }
 
         // Check for collision with flask
-    if (flaskActive && Mine.checkCollisionWithFlask(flaskEntity)) {
-        flaskActive = false;
-        Mine.setPoint(Mine.getPointMCINT() + 1);
-        spawnFlask(flaskEntity, flask); // Spawn a new flask
-        flaskActive = true;
-    }
+        if (flaskActive && Mine.checkCollisionWithFlask(flaskEntity)) {
+            flaskActive = false;
+            Mine.setPoint(Mine.getPointMCINT() + 1);
+            spawnFlask(flaskEntity, flask); // Spawn a new flask
+            flaskActive = true;
+        }
 
         window.clear();
 
-        if (inMainMenu)
-        {
+        if (inMainMenu) {
             // Render main menu
             window.render(250, 300, "Press SPACE to Play", font16, white);
-        }
-        else
-        {
+            window.render(250, 350, "Press L to Load Game", font16, white);
+        } else {
             if (!gameOver) {
-                if (!gamePause)
-                {
+                if (!gamePause) {
                     Mine.update(Crates, 8);
-                    //check collission
+                    // Check collision
                     Mine.checkCollisionWithBalls(ballLtoR, 3);
                     Mine.checkCollisionWithBalls(ballRtoL, 3);
-                    //bola biar gerak
-                    for (int i = 0; i < 3; i++)
-                    {
+                    // Move balls
+                    for (int i = 0; i < 3; i++) {
                         ballLtoR[i].updateLtoR(Crates, 8);
                         ballRtoL[i].updateRtoL(Crates, 8);
                     }
                 }
 
-                if (Mine.getLifeMCINT() == 0)
-                {
+                if (Mine.getLifeMCINT() == 0) {
                     gameOver = true;
                 }
 
                 gameMap.cldrawmap();
-                //render batu
-                for (int i = 0; i < 6; i++)
-                {
+                // Render entities
+                for (int i = 0; i < 6; i++) {
                     window.render(entities[i]);
                 }
-                //render crate
-                for (int i = 0; i < 8; i++)
-                {
+                // Render crates
+                for (int i = 0; i < 8; i++) {
                     window.render(Crates[i]);
                 }
-                // render bola
-                for (int i = 0; i < 3; i++)
-                {
+                // Render balls
+                for (int i = 0; i < 3; i++) {
                     window.render(ballLtoR[i]);
                     window.render(ballRtoL[i]);
                 }
 
                 window.render(Mine);
                 window.render(0, 0, Mine.getLifeMC(), font16, white);
-                window.render(0, 20, Mine.getPointMC(), font16 , white);
+                window.render(0, 20, Mine.getPointMC(), font16, white);
                 window.render(0, 40, "Press P to Pause", font16, white);
-                window.render(0, 60, "Press E to Exit", font16, white);
-                if (gamePause)
-                {
+                window.render(0, 60, "Press E to Save & Exit", font16, white);
+                if (gamePause) {
                     window.render(250, 200, "Game Paused", font16, white);
                     window.render(250, 250, "Press C to Continue", font16, white);
-                    window.render(250, 300, "Press E to Exit", font16, white);
+                    window.render(250, 300, "Press E to Save & Exit", font16, white);
                 }
 
                 // Render flask if active
                 if (flaskActive) {
                     window.render(flaskEntity);
                 }
-            } else
-            {
+            } else {
                 // Render game over screen
                 window.render(250, 200, "Game Over", font16, white);
                 window.render(250, 300, "Press ENTER to Restart", font16, white);
@@ -289,13 +272,11 @@ int main(int argc, char** argv) {
         }
 
         window.display();
-        ////////// untuk delay
+
         frameTime = SDL_GetTicks() - frameStart;
-        if (frameDelay > frameTime)
-        {
+        if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
-        ////////// untuk delay
     }
 
     window.cleanUp();

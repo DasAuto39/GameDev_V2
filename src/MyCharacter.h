@@ -36,10 +36,12 @@ public:
     SDL_Rect* rtunSRCMC();
     SDL_Rect* rtunDSTMC();
     SDL_Rect getCurrentFrame();
+    float getxpos() ;
+    float getypos() ;
     const char* getLifeMC();
     const char* getPointMC();
-    int getLifeMCINT();
-    int getPointMCINT();
+    int getLifeMCINT() ;
+    int getPointMCINT() ;
     void setLife(int rlife);
     void setPoint(int rpoint);
 
